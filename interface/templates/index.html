@@ -4,6 +4,7 @@
         <title>Item List</title>
     </head>
     <body>
+      <form>
         <input type="text" id="search" placeholder="Search...">
         <p>Category</p>
         {% for cat in cate %}
@@ -16,6 +17,7 @@
         <br>
         <button type="button">Filter</button>
         <h1>All Items</h1>
+        </form>
         <ul>
             {% for item in items %}
                 <li>{{ item.product_name }} - {{ item.description }}</li>
