@@ -5,7 +5,16 @@
     </head>
     <body>
         <input type="text" id="search" placeholder="Search...">
-        
+        <p>Category</p>
+        {% for cat in cate %}
+          <input type="checkbox" name = "{{cat}}" />{{cat}}<br>
+        {% endfor %}
+        <p>Tags</p>
+        {% for tag in tags %}
+          <input type="checkbox" name = "{{tag}}" />{{tag}}<br>
+        {% endfor %}
+        <br>
+        <button type="button">Filter</button>
         <h1>All Items</h1>
         <ul>
             {% for item in items %}
