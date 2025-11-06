@@ -5,5 +5,5 @@ from . import views
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("searchDatabase", views.searchDatabase, name="searchDatabase"),
+    path("searchDatabase", views.searchDatabase, name="searchDatabase"), # Endpoint for searching the database
 ]

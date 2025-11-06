@@ -23,19 +23,19 @@ def searchDatabase(request):
             items = ProductData.objects.all()
             
             if search_query:
-                items = items.filter(product_name__icontains=search_query) | items.filter(description__icontains=search_query)
+                items = items.filter(product_name__icontains=search_query) | items.filter(description__icontains=search_query) #filter with or statement looking through name and description
             
             if selected_categories:
-                items = items.filter(category__in=selected_categories)
+                items = items.filter(category__in=selected_categories) #filter by selected categories
             
             if selected_tags:
-                items = items.filter(tags__name__in=selected_tags).distinct()
+                items = items.filter(tags__name__in=selected_tags).distinct() #filter by selected tags
             
             cate = ProductData.objects.values_list('category', flat=True).distinct()
             tags = Tags.objects.values_list('name', flat=True).distinct()
             search = True
             
-            return render(request, "index.html", {"items": items, "cate": cate, "tags": tags, "search": search})
+            return render(request, "index.html", {"items": items, "cate": cate, "tags": tags, "search": search}) # returns filtered items
     else:
         form = searchForm()
     
