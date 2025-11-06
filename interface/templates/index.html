@@ -4,8 +4,9 @@
         <title>Item List</title>
     </head>
     <body>
-      <form>
-        <input type="text" id="search" placeholder="Search...">
+      <form action="searchDatabase" method="post">
+        {% csrf_token %}
+        <input type="text" name="search" id="search" placeholder="Search...">
         <p>Category</p>
         {% for cat in cate %}
           <input type="checkbox" name = "{{cat}}" />{{cat}}<br>
@@ -15,13 +16,17 @@
           <input type="checkbox" name = "{{tag}}" />{{tag}}<br>
         {% endfor %}
         <br>
-        <button type="button">Filter</button>
-        <h1>All Items</h1>
+        <button type="submit">Search/Filter</button>
         </form>
+        <h1>Items</h1>
         <ul>
+            {% if search %}
+
+            {% else %}
             {% for item in items %}
                 <li>{{ item.product_name }} - {{ item.description }}</li>
             {% endfor %}
+            {% endif %}
         </ul>
     </body>
     </html>
