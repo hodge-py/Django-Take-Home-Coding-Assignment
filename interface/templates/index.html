@@ -9,7 +9,7 @@
         <input type="text" name="search" placeholder="Search...">
         <p>Category</p>
         {% for cat in cate %}
-          <input type="checkbox" name = "category" />{{cat}}<br>
+          <input type="checkbox" name = "category" value="{{ cat }}" />{{cat}}<br>
         {% endfor %}
         <p>Tags</p>
         {% for tag in tags %}

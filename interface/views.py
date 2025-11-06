@@ -16,11 +16,12 @@ def searchDatabase(request):
     print("Search Database View Accessed")
     if request.method == "POST":
         form = searchForm(request.POST)
+        #print(form)
         if form.is_valid():
             search_query = form.cleaned_data.get('search')
             selected_categories = form.cleaned_data.get('category')
             selected_tags = form.cleaned_data.get('tags')
-            print("Search Query:", selected_categories)
+            print(selected_categories)
             items = ProductData.objects.all()
             
             if search_query:
