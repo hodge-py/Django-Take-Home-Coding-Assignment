@@ -16,13 +16,14 @@ def searchDatabase(request):
     print("Search Database View Accessed")
     if request.method == "POST":
         form = searchForm(request.POST)
-        #print(form)
+        print(form)
         if form.is_valid():
-            search_query = form.cleaned_data.get('search')
+            search_query = form.cleaned_data.get('search_query')
             selected_categories = form.cleaned_data.get('category')
             selected_tags = form.cleaned_data.get('tags')
             print(selected_categories)
             print(selected_tags)
+            print(search_query)
             items = ProductData.objects.all()
             
             if search_query:
@@ -37,8 +38,6 @@ def searchDatabase(request):
             cate = ProductData.objects.values_list('category', flat=True).distinct()
             tags = Tags.objects.values_list('name', flat=True).distinct()
             search = True
-            for obj in items:
-                print(obj.product_name)
             
             return render(request, "index.html", {"items": items, "cate": cate, "tags": tags, "search": search})
     else:

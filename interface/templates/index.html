@@ -5,23 +5,31 @@
     </head>
     <body>
       <form action="searchDatabase" method="post" enctype="multipart/form-data">
+
         {% csrf_token %}
-        <input type="text" name="search" placeholder="Search...">
+
+        <input type="text" name="search_query" placeholder="Search..." />
+
         <p>Category</p>
         {% for cat in cate %}
-          <input type="checkbox" name = "category" value="{{ cat }}" />{{cat}}<br>
+          <input type="checkbox" name = "category" value="{{ cat }}" />{{cat}}<br />
         {% endfor %}
         <p>Tags</p>
         {% for tag in tags %}
-          <input type="checkbox" name = "tags" value="{{ tag }}" />{{tag}}<br>
+          <input type="checkbox" name = "tags" value="{{ tag }}" />{{tag}}<br />
         {% endfor %}
-        <br>
+        <br />
         <button type="submit">Search/Filter</button>
+
         </form>
+
         <h1>Items</h1>
+
         <ul>
             {% if search %}
-
+            {% for item in items %}
+                <li>{{ item.product_name }} - {{ item.description }}</li>
+            {% endfor %}
             {% else %}
             {% for item in items %}
                 <li>{{ item.product_name }} - {{ item.description }}</li>
