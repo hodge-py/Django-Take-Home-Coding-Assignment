@@ -22,6 +22,7 @@ def searchDatabase(request):
             selected_categories = form.cleaned_data.get('category')
             selected_tags = form.cleaned_data.get('tags')
             print(selected_categories)
+            print(selected_tags)
             items = ProductData.objects.all()
             
             if search_query:
@@ -36,6 +37,8 @@ def searchDatabase(request):
             cate = ProductData.objects.values_list('category', flat=True).distinct()
             tags = Tags.objects.values_list('name', flat=True).distinct()
             search = True
+            for obj in items:
+                print(obj.product_name)
             
             return render(request, "index.html", {"items": items, "cate": cate, "tags": tags, "search": search})
     else:
