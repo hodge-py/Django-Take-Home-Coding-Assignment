@@ -4,9 +4,9 @@ from .models import ProductData, Tags
 from .forms import searchForm
 
 def index(request):
-    items = ProductData.objects.distinct().all()
-    cate = ProductData.objects.values_list('category', flat=True).distinct()
-    tags = Tags.objects.values_list('name', flat=True).distinct()
+    items = ProductData.objects.distinct().all() # Get all distinct products
+    cate = ProductData.objects.values_list('category', flat=True).distinct() # Get distinct categories
+    tags = Tags.objects.values_list('name', flat=True).distinct() # Get distinct tags
     search = False
     return render(request, "index.html", {"items": items, "cate": cate, "tags": tags, "search": search})
 
@@ -16,14 +16,10 @@ def searchDatabase(request):
     print("Search Database View Accessed")
     if request.method == "POST":
         form = searchForm(request.POST)
-        print(form)
         if form.is_valid():
-            search_query = form.cleaned_data.get('search_query')
-            selected_categories = form.cleaned_data.get('category')
-            selected_tags = form.cleaned_data.get('tags')
-            print(selected_categories)
-            print(selected_tags)
-            print(search_query)
+            search_query = form.cleaned_data.get('search_query') # Get the search query
+            selected_categories = form.cleaned_data.get('category') # Get selected categories
+            selected_tags = form.cleaned_data.get('tags') # Get selected tags
             items = ProductData.objects.all()
             
             if search_query:

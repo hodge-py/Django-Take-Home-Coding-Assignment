@@ -12,5 +12,5 @@ class searchForm(forms.Form):
         label='tags',
         required=False,
         widget=forms.CheckboxSelectMultiple,
-        choices=[('War', 'War'), ('Story', 'Story'), ('kitchen', 'kitchen')] 
+        choices=[('War', 'War'), ('Story', 'Story'), ('kitchen', 'kitchen'),('Measure','Measure'),('Survival','Survival'),('Jazz','Jazz'),('Country','Country'),('Bedroom','Bedroom')] 
     )
